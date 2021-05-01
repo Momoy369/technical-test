@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+	    <meta charset="utf-8">
+	</head>
+<body>
+    <section class="login-form-wrap">
+        <h1>Vending Machine DumbWays</h1>
+        <br>
+        <form class="login-form" action="#">
+            <label>
+            <input type="number" name="uang1" id="uang1" required placeholder="Total belanja">
+            <input type="number" name="uang2" id="uang2" required placeholder="Jumlah Uang">
+            <input type="button" onclick="hitungKembalian()" value="Hasil">
+           </label>
+            <div class="keterangan" id="result">Kembalian Anda : </div>
+        </form>
+    </section>
+</body>
+<script type="text/javascript">
+function hitungKembalian() {
+    var uang1 = document.getElementById('uang1').value;
+    var uang2 = document.getElementById('uang2').value;
+    var uang3 = uang2-uang1;
+    var kembalian, kembalian1, kembalian2, kembalian3, kembalian4;
+
+    kembalian = uang3 / 50000;
+    if(kembalian > 0){
+        uang3 = uang3 % 50000;
+    }
+
+    kembalian1 = uang3 / 20000;
+    if(kembalian1 > 0){
+        uang3 = uang3 % 20000;
+    }
+
+    kembalian2 = uang3 / 10000;
+    if(kembalian2 > 0){
+        uang3 = uang3 % 10000;
+    }
+
+    kembalian3 = uang3 / 5000;
+    if(kembalian3 > 0){
+        uang3 = uang3 % 5000;
+    }
+
+    kembalian4 = uang3 / 4900;
+    if(kembalian4 > 0){
+        uang3 = uang3 % 4900;
+    }
+    
+    console.log(uang3+", "+kembalian+", "+kembalian1+", "+kembalian2+", "+kembalian3+", "+kembalian4);
+    var printDiv = document.getElementById('result');
+    printDiv.innerHTML = 'Kembalian : <br>'+
+        "- "+convT(kembalian)+' 50000<br>'+
+        "- "+convT(kembalian1)+' 20000<br>'+
+        "- "+convT(kembalian2)+' 10000<br>'+
+        "- "+convT(kembalian3)+' 5000<br>'+
+        "- "+convT(kembalian4)+' 4900 Disumbangkan karena tidak ada pecahan dibawah 5000';
+}
+
+function convT(x) {
+    i = Math.floor(x);
+    var angka = new Array('0','1','2','3','4','5','6','7','8','9');
+    var kata = new Array('0 x','1 x','2 x','3 x','4 x','5 x','6 x', '7 x', '8 x', '9 x');
+    var bilang=kata[i];
+    return bilang;
+}
+</script>
+</html>
